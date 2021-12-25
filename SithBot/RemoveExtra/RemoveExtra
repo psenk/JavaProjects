@@ -1,0 +1,43 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class RemoveExtra {
+
+    public static FileWriter fileWriter;
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader fileName = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("What is the name of the file?");
+        String userFileName = fileName.readLine();
+
+        File newFile = new File("C:\\Users\\obliv\\Desktop\\Java\\SithBotProject\\files\\new" + userFileName + ".txt");
+        if (newFile.createNewFile()) {
+            System.out.println("New file created: " + newFile.getName());
+        } else {
+            System.out.println("File already exists.  Overwriting..");
+        }
+
+        fileWriter = new FileWriter("C:\\Users\\obliv\\Desktop\\Java\\SithBotProject\\files\\new" + userFileName + ".txt");
+
+        try {
+            //TestOne.testMethodOne(userFileName);
+            TestTwo.testMethodTwo(userFileName);
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("File Not Found.");
+        }
+        finally {
+            if (fileName != null) {
+                fileName.close();
+            }
+            if (fileWriter != null) {
+                fileWriter.close();
+            }
+            System.out.println("Complete.");
+        }
+    }
+}
