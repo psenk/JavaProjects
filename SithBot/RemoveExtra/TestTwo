@@ -1,0 +1,51 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class TestTwo extends RemoveExtra {
+
+    private static int data = 0;
+    private static FileInputStream file;
+    private static InputStreamReader fileReader;
+
+    public static void testMethodTwo(String userFileName) throws IOException {
+        file = new FileInputStream("C:\\Users\\obliv\\Desktop\\Java\\SithBotProject\\files\\" + userFileName + ".txt");
+        fileReader = new InputStreamReader(file);
+
+        data = fileReader.read();
+        clearFirstLine();
+
+        try {
+            while(data != -1) {
+                if ((char) data != ',' && data != -1) {
+                    fileWriter.write((char) data);
+                }
+                else {
+                    boolean loop = true;
+                    while(loop) {
+                        data = fileReader.read();
+                        if (data == 10) {
+                            fileWriter.write("\n");
+                            loop = false;
+                        }
+                    }
+                }
+                data = fileReader.read();
+            }
+        }
+        finally {
+            if (fileReader != null) {
+                fileReader.close();
+            }
+            if (file != null) {
+                file.close();
+            }
+        }
+    }
+
+    private static void clearFirstLine() throws IOException {
+        while (data != 10) {
+            data = fileReader.read();
+        }
+    }
+}
