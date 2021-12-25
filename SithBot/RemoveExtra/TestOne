@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class TestOne extends RemoveExtra {
+
+    private static BufferedReader fileReader = null;
+
+    public static void testMethodOne(String userFileName) throws IOException {
+        try {
+            fileReader = new BufferedReader(new FileReader("C:\\Users\\obliv\\Desktop\\Java\\SithBotProject\\files\\" + userFileName + ".txt"));
+
+            String line = fileReader.readLine();
+            while (line != null) {
+                line = fileReader.readLine();
+                String[] examineLine = line.split(",");
+                fileWriter.write(examineLine[0] + "\n");
+            }
+        } catch (NullPointerException npe) {}
+        finally {
+            if (fileReader != null) {
+                fileReader.close();
+            }
+            if (fileWriter != null) {
+                fileWriter.close();
+            }
+        }
+    }
+}
