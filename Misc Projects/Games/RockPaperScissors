@@ -1,0 +1,82 @@
+//imports
+import java.util.Random;
+import java.util.Scanner;
+
+public class RockPaperScissors {
+
+    public static void main(String[] args) {
+
+        //declaring scanner for user input
+        //NOTE: place scanner OUTSIDE of loop
+        Scanner scanner = new Scanner(System.in);
+
+        //keeps game going until break
+        while (true) {
+            //declaring string array
+            //assigning all possible game options
+            String[] rps = {"rock", "paper", "scissors"};
+
+            //declaring computerMove string
+            //assigning random int between 0 and 3 (array length) to computerMove
+            String computerMove = rps[new Random().nextInt(rps.length)];
+
+            //declaring playerMove string
+            String playerMove;
+
+            //keeps player turn going until break
+            while (true) {
+                //asks and scans for player input
+                //stores in playerMove string
+                System.out.print("Please enter your move (rock, paper, or scissors): ");
+                playerMove = scanner.nextLine();
+
+                //if valid move, break turn, continue
+                if (playerMove.equals("rock") || playerMove.equals("paper") || playerMove.equals("scissors")) {
+                    break;
+                }
+                //print this if invalid move
+                System.out.println(playerMove + " is not a valid move.");
+            }
+            //printing computers selection
+            System.out.println("Computer played: " + computerMove);
+
+            //if player and computer moves are the same, game is a tie
+            if (playerMove.equals(computerMove)) {
+                System.out.println("The game was a tie!");
+
+                //game options if player chooses rock
+            } else if (playerMove.equals("rock")) {
+                if (computerMove.equals("paper")) {
+                    System.out.println("You lose!");
+                } else if (computerMove.equals("scissors")) {
+                    System.out.println("You win!");
+                }
+                //game options if player chooses paper
+            } else if (playerMove.equals("paper")) {
+                if (computerMove.equals("scissors")) {
+                    System.out.println("You lose!");
+                } else if (computerMove.equals("rock")) {
+                    System.out.println("You win!");
+                }
+                //game options if player chooses scissors
+            } else if (playerMove.equals("scissors")) {
+                if (computerMove.equals("rock")) {
+                    System.out.println("You lose!");
+                } else if (computerMove.equals("paper")) {
+                    System.out.println("You win!");
+                }
+            }
+
+            //asking if player wants to play again
+            System.out.println("Play again? (y/n)");
+            //scanning for answer
+            String playAgain = scanner.nextLine();
+            //if not yes, end game
+            if (!playAgain.equals("y")) {
+                break;
+            }
+        }
+        //always close your scanner!
+        scanner.close();
+    }
+}
