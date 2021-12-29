@@ -1,13 +1,15 @@
+package TestPackage;
+
 import java.util.Arrays;
-import java.util.Math;
+import java.lang.Math;
 
-public class ArrayBorder {
+public class ArrayFun {
 
-    // defining variables
+    //defining variables
     static int[][] array1;
     static int arrayWidth;
 
-    // method to create random sized array titled "array"
+    //method to create random sized array titled "array"
     public static int[][] createArray(int len, int wid) {
 
         array1 = new int[wid][len];
@@ -22,7 +24,7 @@ public class ArrayBorder {
         return array1;
     }
 
-    public static int[][] createRandomArray() {
+    public static void createRandomArray() {
 
         int wid = (int) (Math.random() * (9) + 1);
         int len = (int) (Math.random() * (9) + 1);
@@ -36,19 +38,18 @@ public class ArrayBorder {
                 array1[row][col] = rand;
             }
         }
-        return array1;
     }
 
-    // method to print array "array"
+    //method to print array "array"
     public static void printArray() {
 
         System.out.println(Arrays.deepToString(array1).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
 
     }
 
-    // method to print the border of array "array"
+    //method to print the border of array "array"
     public static void printBorder() {
-        System.out.println("Array Border:" + "\n");
+        System.out.println("Array Border" + "\n");
         for (int row = 0; row < array1.length; row++) {
             System.out.print("[");
             for (int col = 0; col < arrayWidth; col++) {
@@ -80,7 +81,7 @@ public class ArrayBorder {
         }
     }
 
-    // method to print the dimentions of array "array"
+    //method to print the dimentions of array "array"
     public static void printArrayDimensions() {
 
         System.out.println("The width of the array is: " + arrayWidth);
@@ -90,7 +91,7 @@ public class ArrayBorder {
 
     public static void main(String[] args) {
 
-        // createArray(4,1);
+        //createArray(4,1);
         createRandomArray();
 
         printArray();
