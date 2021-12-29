@@ -1,0 +1,107 @@
+public class Solution {
+    public static void main(String[] args) {
+        String binaryNumber = "100111010000";
+        System.out.println("Binary number " + binaryNumber + " is equal to hexadecimal number " + toHex(binaryNumber));
+        String hexNumber = "9d0";
+        System.out.println("Hexadecimal number " + hexNumber + " is equal to binary number " + toBinary(hexNumber));
+    }
+
+    public static String toHex(String binaryNumber) {
+        //if binary string is empty, return empty string
+        if (binaryNumber == null) {
+            return "";
+        }
+
+        //if any # in the binary string isn't 1 or 0, return empty string
+        for (int i = 0; i < binaryNumber.length(); i++) {
+            char value = binaryNumber.charAt(i);
+            int num = Character.getNumericValue(value);
+            if (num > 1 || num < 0) {
+                return "";
+            }
+        }
+
+        //add 0's to the beginning of binary string if string isn't in blocks of 4 digits
+        while (binaryNumber.length() % 4 != 0) {
+            binaryNumber = "0" + binaryNumber;
+        }
+
+        //defining variables
+        String HEX = "0123456789abcdef";
+        int index = binaryNumber.length() - 1;
+        String newBinaryNumber = "";
+
+        //convert every 4 blocks of numbers in binary string starting at end to decimal, then convert to hex
+        for (int j = 0; j < binaryNumber.length() / 4; j++) {
+            int num = 0;
+            for (int i = 0; i < 4; i++) {
+                int value = Character.getNumericValue(binaryNumber.charAt(index - i));
+                num += value * Math.pow(2, i);
+            }
+            char hexRep = HEX.charAt(num);
+            newBinaryNumber = hexRep + newBinaryNumber;
+            index = index - 4;
+        }
+
+        return newBinaryNumber;
+    }
+
+    public static String toBinary(String hexNumber) {
+        //if hex string is empty, return empty string
+        if (hexNumber == null) {
+            return "";
+        }
+
+        //if any number in hex string isn't 0 - 9 or a - f, return empty string
+        for (int i = 0; i < hexNumber.length(); i++) {
+            char examine = hexNumber.charAt(i);
+            if (examine == '0' || examine == '1' || examine == '2' || examine == '3' || examine == '4' || examine == '5' || examine == '6' || examine == '7' || examine == '8' || examine == '9' || examine == 'a' || examine == 'b' || examine == 'c' || examine == 'd' || examine == 'e' || examine == 'f') {
+                continue;
+            } else {
+                return "";
+            }
+        }
+
+        //check character in hex number, convert to binary string, concatenate together
+        String newBinary = "";
+        for (int i = 0; i < hexNumber.length(); i++) {
+            char examine = hexNumber.charAt(i);
+            String binAdd = "";
+            if (examine == '0') {
+                binAdd = "0000";
+            } else if (examine == '1') {
+                binAdd = "0001";
+            } else if (examine == '2') {
+                binAdd = "0010";
+            } else if (examine == '3') {
+                binAdd = "0011";
+            } else if (examine == '4') {
+                binAdd = "0100";
+            } else if (examine == '5') {
+                binAdd = "0101";
+            } else if (examine == '6') {
+                binAdd = "0110";
+            } else if (examine == '7') {
+                binAdd = "0111";
+            } else if (examine == '8') {
+                binAdd = "1000";
+            } else if (examine == '9') {
+                binAdd = "1001";
+            } else if (examine == 'a') {
+                binAdd = "1010";
+            } else if (examine == 'b') {
+                binAdd = "1011";
+            } else if (examine == 'c') {
+                binAdd = "1100";
+            } else if (examine == 'd') {
+                binAdd = "1101";
+            } else if (examine == 'e') {
+                binAdd = "1110";
+            } else if (examine == 'f') {
+                binAdd = "1111";
+            }
+            newBinary = newBinary + binAdd;
+        }
+        return newBinary;
+    }
+}
