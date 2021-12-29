@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class Fibonacci {
+
+    //custom write idea
+    private static void findFibonacciOne(int numInput) {
+        int count = 3;
+        long currentFib = 2;
+        long fibonacciOne = 2;
+        long fibonacciTwo = 1;
+        if (numInput <= 2) {
+            System.out.println("The fibonacci number at position #" + numInput + " is 1.");
+            return;
+        }
+        while (count < numInput) {
+            count++;
+            currentFib = fibonacciOne + fibonacciTwo;
+            fibonacciTwo = fibonacciOne;
+            fibonacciOne = currentFib;
+        }
+        System.out.println("The fibonacci number at position #" + numInput + " is " + currentFib + ".");
+    }
+
+    //slow as hell recursive
+    private static long findFibonacciTwo(int numInput) {
+        if (numInput <= 1) {
+            return numInput;
+        }
+        return (findFibonacciTwo(numInput - 1) +
+                findFibonacciTwo(numInput - 2));
+    }
+
+    //faster recursive memoization
+    private static long[] fibCache;
+    private static long findFibonacciThree(int numInput) {
+        if (numInput <= 1) {
+            return numInput;
+        }
+        if (fibCache[numInput] != 0) {
+            return fibCache[numInput];
+        }
+        long nthFibNum = findFibonacciThree(numInput - 1) +
+                findFibonacciThree(numInput - 2);
+        fibCache[numInput] = nthFibNum;
+        return nthFibNum;
+    }
+
+    public static void main(String[] args) {
+        Scanner n = new Scanner(System.in);
+        System.out.println("Which Fibonacci number do you want to want to find? ");
+        int ans = n.nextInt();
+
+        //findFibonacciOne(ans);
+
+        //System.out.println(findFibonacciTwo(ans));
+
+        fibCache = new long[ans + 1];
+        System.out.println(findFibonacciThree(ans));
+        
+        n.close();
+    }
+}
