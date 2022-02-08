@@ -1,0 +1,69 @@
+/*
+* Given a string str, if the string starts with "f" return 
+* "Fizz". If the string ends with "b" return "Buzz". If both 
+* he "f" and "b" conditions are true, return "FizzBuzz". In 
+* all other cases, return the string unchanged. (See also: 
+* FizzBuzz Code)
+*/
+
+public String fizzString(String str) {
+  if (str.startsWith("f") && str.endsWith("b")) return "FizzBuzz";
+  if (str.startsWith("f")) return "Fizz";
+  if (str.endsWith("b")) return "Buzz";
+  return str;
+}
+
+
+// ------------------------------------------------------------
+
+/*
+* Given an int n, return the string form of the number followed
+* by "!". So the int 6 yields "6!". Except if the number is 
+* divisible by 3 use "Fizz" instead of the number, and if the 
+* number is divisible by 5 use "Buzz", and if divisible by both 
+* 3 and 5, use "FizzBuzz". Note: the % "mod" operator computes 
+* the remainder after division, so 23 % 10 yields 3. What will 
+* the remainder be when one number divides evenly into another? 
+*/
+
+public String fizzString2(int n) {
+  if (n % 3 == 0 && n % 5 == 0) return "FizzBuzz!";
+  if (n % 3 == 0) return "Fizz!";
+  if (n % 5 == 0) return "Buzz!";
+  return String.valueOf(n) + "!";
+}
+
+// ------------------------------------------------------------
+
+/*
+* Given a number n, create and return a new int array of length
+* n, containing the numbers 0, 1, 2, ... n-1. The given n may 
+* be 0, in which case just return a length 0 array. You do not 
+* need a separate if-statement for the length-0 case; the 
+* for-loop should naturally execute 0 times in that case, so it 
+* just works. The syntax to make a new int array is: 
+* new int[desired_length]
+*/
+
+public int[] fizzArray(int n) {
+  int[] array = new int[n];
+  for (int i = 0; i < array.length; i++) {
+    array[i] = i;
+  }
+  return array;
+}
+
+// ------------------------------------------------------------
+
+/*
+* Given a number n, create and return a new string array of 
+* length n, containing the strings "0", "1" "2" .. through n-1. 
+* N may be 0, in which case just return a length 0 array. Note: 
+* String.valueOf(xxx) will make the String form of most types. 
+* The syntax to make a new string array is: new 
+* String[desired_length]
+*/
+
+
+
+// ------------------------------------------------------------
